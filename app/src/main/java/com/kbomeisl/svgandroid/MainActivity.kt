@@ -10,7 +10,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.kbomeisl.androidsvg.parsing.SvgParser
 import com.kbomeisl.svgandroid.ui.theme.SVGAndroidTheme
+import java.io.BufferedReader
+import java.io.InputStream
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +25,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val parser = SvgParser(this)
+
+                    Greeting(parser)
                 }
             }
         }
@@ -30,17 +35,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun Greeting(parser: SvgParser) {
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SVGAndroidTheme {
-        Greeting("Android")
-    }
+    Text(
+        text = parser.parseSvg("Android_logo_2019_(stacked).svg").toString()
+    )
 }
