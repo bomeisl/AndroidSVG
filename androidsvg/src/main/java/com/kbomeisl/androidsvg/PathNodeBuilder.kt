@@ -3,6 +3,10 @@ package com.kbomeisl.androidsvg.parsing
 import androidx.compose.ui.graphics.vector.PathNode
 
 object PathNodeBuilder {
+    /**
+     * A wrapper around the ImageVector PathNode class with methods to create
+     * PathNodes from string data parsed from the path tag of SVGs
+     */
 
     fun buildLineNode(x: Float, y: Float): PathNode {
         val lineTo = PathNode.LineTo(
